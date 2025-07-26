@@ -1,0 +1,82 @@
+# ==============================================================================
+# File: src/config/kafka.yaml
+# Description: Configuration for Apache Kafka connection.
+# ==============================================================================
+broker: "localhost:9092"
+topic: "kart-telemetry"
+client_id: "purdue-gp-producer"
+
+```yaml
+# ==============================================================================
+# File: src/config/sensors.yaml
+# Description: Defines the specifications and simulation parameters for sensors.
+# ==============================================================================
+simulation_frequency_hz: 100 # How many messages per second.
+
+sensors:
+  - id: accelerometer
+    type: "IMU"
+    parameters:
+      x_range: [-2.5, 2.5]
+      y_range: [-2.5, 2.5]
+      z_base: 9.8
+      z_noise: [-0.5, 0.5]
+
+  - id: gps
+    type: "GPS-Module"
+    parameters:
+      base_lat: 40.4237 # Purdue University
+      base_lon: -86.9212
+      noise: 0.01
+      base_speed_kmh: 60
+      speed_fluctuation: 20
+
+  - id: temperature
+    type: "Thermocouple"
+    parameters:
+      engine_base: 95
+      engine_noise: [-2, 2]
+      brake_base: 450
+      brake_noise: [-20, 20]
+      anomaly_chance: 0.05 # 5% chance of a temp spike
+      anomaly_spike: 100
+
+  - id: tire_pressure
+    type: "TPMS"
+    parameters:
+      fl_base: 18.0
+      fr_base: 18.2
+      rl_base: 19.0
+      rr_base: 19.1
+      noise: [-0.5, 0.5]
+
+  - id: engine
+    type: "RPM-Sensor"
+    parameters:
+      base_rpm: 4000
+      rpm_fluctuation: 1000
+      rpm_noise: [-200, 200]
+```yaml
+# ==============================================================================
+# File: src/config/spark.yaml
+# Description: Configuration for the Spark Session and jobs.
+# ==============================================================================
+app_name: "PurdueGP-DigitalTwin"
+packages:
+  - "org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1"
+  - "org.mongodb.spark:mongo-spark-connector_2.12:3.0.1"
+log_level: "ERROR"
+
+```yaml
+# ==============================================================================
+# File: src/config/mongodb.yaml
+# Description: Configuration for MongoDB connection.
+# ==============================================================================
+uri: "mongodb://localhost:27017/"
+database: "grand_prix_db"
+collections:
+  telemetry: "telemetry"
+  alerts: "alerts"
+  analytics_results: "analytics_results"
+  ml_models: "ml_models"
+
