@@ -68,7 +68,7 @@ The system is designed as a distributed, event-driven architecture. For a detail
 ### Installation
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/PurdueGP-DigitalTwin.git](https://github.com/your-username/PurdueGP-DigitalTwin.git)
+    git clone [https://github.com/kothariyash321/PurdueGP-DigitalTwin.git](https://github.com/your-username/PurdueGP-DigitalTwin.git)
     cd PurdueGP-DigitalTwin
     ```
 2.  **Set up the environment:**
